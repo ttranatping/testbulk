@@ -1,0 +1,21 @@
+version: "3.4"
+
+services:
+
+  pingfederate:
+    image: pingidentity/pingfederate:2510
+    env_file:
+      - ~/.pingidentity/config
+    ports:
+      - 9031:9031
+      - 9999:9999
+    networks:
+      - pingnet-internal
+    cap_add:
+      - NET_ADMIN
+    volumes:
+       - ../server_profiles/pingfederate:/opt/in
+
+
+networks:
+    pingnet-internal:
